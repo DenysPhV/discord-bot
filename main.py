@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands, tasks
 from dataclasses import dataclass
 
-from src.settings import settings
-from src.registration import register_user
+from bot.src.settings import settings
+from bot.src.registration import register_user
 
 MAX_SESSION_TIME_MINUTES = 2
 
