@@ -6,6 +6,7 @@ from discord.ext import commands, tasks
 from dataclasses import dataclass
 
 from src.settings import settings
+from src.registration import register_user
 
 MAX_SESSION_TIME_MINUTES = 2
 
@@ -24,12 +25,11 @@ session = Session()
 async def on_ready():
     print(f'We have logged in as {bot.user}')
     channel = bot.get_channel(int(settings.CHANNEL_ID))
-    await channel.send("I'm your own helper!")
+    await channel.send("Go to start a new session press '>start'")
 
 
 @tasks.loop(minutes=MAX_SESSION_TIME_MINUTES, count=2)
 async def break_reminder():
-
     # Ignore the first execution of this command.
     if break_reminder.current_loop == 0:
         return
@@ -49,6 +49,9 @@ async def start(ctx):
     human_readable_time = ctx.message.created_at.strftime("%H:%M:%S")
     break_reminder.start()
     await ctx.send(f"New session started at {human_readable_time}")
+    await ctx.send(
+        "If you want to registration on the site use the command '>reg' and entered your email,  password and "
+        "confirm password.")
 
 
 @bot.command()
@@ -63,6 +66,14 @@ async def end(ctx):
     human_readable_duration = str(datetime.timedelta(seconds=duration))
     break_reminder.stop()
     await ctx.send(f"Session ended after {human_readable_duration}.")
+
+
+@bot.command()
+async def reg(ctx, email, password, confirm_password):
+    success = register_user(email, password, confirm_password)
+    if success:
+        await ctx.send("Successfully registered!")
+    await ctx.send("Registration failed. Please try again.")
 
 
 bot.run(settings.DISCORD_TOKEN)
