@@ -51,7 +51,7 @@ async def start(ctx):
     await ctx.send(f"New session started at {human_readable_time}")
     await ctx.send(
         "If you want to registration on the site use the command '>registration' and entered <your email>,  <password min 12 "
-        "digits> and "
+        "simbols> and "
         "<confirm password>.")
 
 
@@ -77,4 +77,5 @@ async def registration(ctx, email, password, confirm_password):
     await ctx.send("Registration failed. Please try again.")
 
 
-bot.run(settings.DISCORD_TOKEN)
+if __name__ == '__main__':
+    bot.run(settings.DISCORD_TOKEN)
