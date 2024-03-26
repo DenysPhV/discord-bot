@@ -10,6 +10,7 @@ load_dotenv()
 class Settings:
     DISCORD_TOKEN: str = os.environ.get("DISCORD_TOKEN")
     CHANNEL_ID: int = os.environ.get("CHANNEL_ID")
+    # FLY_TOKEN: str = os.environ.get("FLY_TOKEN")
 
 
 settings = Settings()

@@ -17,7 +17,7 @@ def register_user(email, password, confirm_password):
     confirm_password_input = driver.find_element(By.NAME, "passwordConfirm")
     confirm_password_input.send_keys(confirm_password)
 
-    time.sleep(10)
+    time.sleep(2)
 
     success_message = driver.find_elements(By.XPATH, "//div[contains(text(), 'Successfully registered')]")
 
@@ -27,4 +27,6 @@ def register_user(email, password, confirm_password):
     else:
         driver.quit()
         return False
+
+
 

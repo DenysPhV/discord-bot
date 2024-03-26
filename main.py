@@ -50,8 +50,9 @@ async def start(ctx):
     break_reminder.start()
     await ctx.send(f"New session started at {human_readable_time}")
     await ctx.send(
-        "If you want to registration on the site use the command '>reg' and entered your email,  password and "
-        "confirm password.")
+        "If you want to registration on the site use the command '>registration' and entered <your email>,  <password min 12 "
+        "digits> and "
+        "<confirm password>.")
 
 
 @bot.command()
@@ -69,7 +70,7 @@ async def end(ctx):
 
 
 @bot.command()
-async def reg(ctx, email, password, confirm_password):
+async def registration(ctx, email, password, confirm_password):
     success = register_user(email, password, confirm_password)
     if success:
         await ctx.send("Successfully registered!")
