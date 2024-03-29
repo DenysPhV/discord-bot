@@ -3,8 +3,7 @@ WORKDIR /bot
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
-COPY .. .
+COPY . /bot/
 
 CMD ["python", "/bot/main.py"]
 
