@@ -5,7 +5,8 @@ from selenium.webdriver.common.by import By
 
 
 def register_user(email, password, confirm_password):
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    driver = webdriver.Chrome(options=options)
     driver.get("https://tours.seated.com/signup")
 
     email_input = driver.find_element(By.NAME, "email")

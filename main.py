@@ -81,4 +81,3 @@ async def registration(ctx, email, password, confirm_password):
 
 if __name__ == '__main__':
     bot.run(settings.DISCORD_TOKEN)
-
